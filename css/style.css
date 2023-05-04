@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  font-family: "Trebuchet MS";
+}
+
+form {
+  margin-bottom: 30px;
+}
+form input {
+  width: 400px;
+  height: 47px;
+  max-width: 100%;
+  padding: 5px;
+}
+form button {
+  padding: 10px 20px;
+  background-color: rgb(255, 219, 152);
+  border: solid 2px rgb(255, 197, 88);
+  border-radius: 3px;
+  font-size: 20px;
+}
+
+#to-do-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5%;
+}
+#to-do-list .to-do {
+  width: 200px;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+  background-color: rgb(252, 208, 208);
+  border: solid 2px rgb(255, 108, 103);
+}
+#to-do-list .done {
+  background-color: rgb(209, 255, 171);
+  border: solid 2px rgb(121, 255, 103);
+}
+
+.container {
+  width: 90%;
+  max-width: 1600px;
+  margin: auto;
+}
+
+@media (max-width: 849px) {
+  button {
+    width: 400px;
+    max-width: 100%;
+    margin-top: 15px;
+  }
+}
+@media (max-width: 500px) {
+  #to-do-list {
+    flex-direction: column;
+  }
+  #to-do-list .to-do {
+    width: 100%;
+  }
+}
