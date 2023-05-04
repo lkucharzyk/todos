@@ -44,12 +44,41 @@ function addToDoToDOM(toDo){
 
 function switchComplete(e){
     const element = e.target;
-    element.classList.toggle('done');
+    if(element.classList.contains('to-do')){
+        element.classList.toggle('done');
+
+        updateToDo(element.getAttribute('data-id'), element.classList.contains('done'));
+    }
+}
+
+function updateToDo(id, completed){
+    fetch(`${apiUrl}/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({completed}),
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+}
+
+function deleteToDo(e){
+    const element = e.target;
+    if(element.classList.contains('to-do')){
+       const id = element.getAttribute('data-id');
+       fetch(`${apiUrl}/${id}`,{
+        method: "DELETE"
+       })
+       .then(res => res.json())
+       .then(()=>element.remove());
+    }
 }
 
 const init = ()=>{
     fetchToDos();
     form.addEventListener('submit', addToDo)
     list.addEventListener('click', switchComplete);
+    list.addEventListener('dblclick', deleteToDo);
 }
 document.onload = init();
